@@ -1,0 +1,215 @@
+import React, { useState, useEffect } from "react";
+import { LineChart } from "./DataSet_Linechart";
+import { pieChart } from "./Data_Bubble";
+import {BubbleChart, PieChart} from "./Chart_Function"
+import Render_Chart from "./Call_Chart_ID"
+import Chart_Number from "./Function_Call_NO"
+import MultiFunction from "./MultiFunction";
+import { Line_Chart } from "./Chart_Function";
+import {Barchart}  from "./Chart_Function";  
+import{Data_Bar_1} from "MyComponent/Data_Barchart"
+import {Data_PieChart} from "./Data_piechart"
+// import {LineChart} from "./DataSet_Linechart"
+// import { Line_Chart } from "./Chart_Function";
+
+
+
+
+// function Featch_Chart() {
+
+
+
+//     // const [viz_Bubble, setviz_Bubble] = useState(null);
+//     // const [viz_Line_Chart, setviz_Line_Chart] = useState(null);
+//     // const [viz_Barchart, setviz_Barchart] = useState(null);
+//     // const [userInput, setuserInput] = useState(null);
+//     // const [line_Mapping, setline_Mapping] = useState(null);
+//     // const [line_Visulation, setline_Visulation] = useState(null);
+
+//     const [viz_Bubble, setviz_Bubble] = useState(null);
+// const [viz_Line_Chart, setviz_Line_Chart] = useState(null);
+// const [viz_Barchart, setviz_Barchart] = useState(null);
+// const [userInput, setuserInput] = useState('');
+// const [line_Mapping, setline_Mapping] = useState({});
+// const [line_Visulation, setline_Visulation] = useState({});
+
+
+    
+    
+
+
+//     useEffect(() => {
+
+
+//         // const result_Barchart = Barchart();
+//         //  setviz_Barchart(result_Barchart)
+//         //  console.log(result_Barchart, "Barchart")
+
+//         //  const result_Bubble = BubbleChart();
+    
+//         //  setviz_Bubble(result_Bubble)
+//         //  console.log(result_Bubble, "Result")
+//         let User_Input_bar = Data_Bar_1.userInput;
+//         setuserInput(User_Input_bar || '');
+      
+//         let Bar_Mapping = Data_Bar_1.mapping;
+//         // let Bar_Visulation = Data_Bar_1.visualOptions || {};
+//         const Bar_Visulation = {
+//             ...Data_Bar_1.visualOptions,
+//             width: 1500, // Update the width value as per your requirements
+//             height: 600, // Update the height value as per your requirements
+//           };
+//         let dataTypes_Type_Bar = Data_Bar_1.dataTypes;
+      
+//         const result_BarChart = Barchart(User_Input_bar, Bar_Mapping, Bar_Visulation, dataTypes_Type_Bar);
+//         setviz_Barchart(result_BarChart);
+      
+//         let User_Input = LineChart.userInput;
+//         setuserInput(User_Input || '');
+      
+//         let line_Mapping = LineChart.mapping;
+//         let line_Visulation = LineChart.visualOptions || {};
+//         let dataTypes_Type = LineChart.dataTypes;
+      
+//         const result_LineChart = Line_Chart(User_Input, line_Mapping, line_Visulation, dataTypes_Type);
+//         setviz_Line_Chart(result_LineChart);
+//         const ch =1;
+//         const Ch_1 =2;
+
+//         // const result_Bubble_obj = MultiFunction(ch);
+        
+     
+        
+
+//         //  console.log(result_Bubble.Bubble_Obj, "result_Bubble.Bubble_Obj")
+
+
+//         //  const result_LineChart = MultiFunction(Ch_1);
+
+//         //  const result_LineChart = Line_Chart();
+//         //  setviz_Line_Chart(result_LineChart)
+//         //  console.log(result_LineChart)
+
+
+         
+
+         
+       
+    
+
+
+//      }, []);
+
+//      return (
+//         <div>
+//             <Render_Chart viz_Bubble ={viz_Bubble} viz_Line_Chart={viz_Line_Chart} viz_Barchart={viz_Barchart}/>
+//             {/* <Line_Chart userInput = {userInput} /> */}
+//         </div>
+//      )
+// } 
+
+// const x =1;
+
+// Featch_Chart(x);
+
+function Featch_Chart(props) {
+    const [viz_Bubble, setviz_Bubble] = useState(null);
+    const [viz_Line_Chart, setviz_Line_Chart] = useState(null);
+    const [viz_Barchart, setviz_Barchart] = useState(null);
+    const [userInput, setuserInput] = useState("");
+    const [line_Mapping, setline_Mapping] = useState({});
+    const [line_Visulation, setline_Visulation] = useState({});
+    const [viz_PieChart, setviz_PieChart] = useState(null);
+    const chartWidth = props.chartWidth;
+  const chartHeight = props.chartHeight;
+  
+    useEffect(() => {
+      let User_Input_bar = Data_Bar_1.userInput;
+      setuserInput(User_Input_bar || "");
+  
+      let Bar_Mapping = Data_Bar_1.mapping;
+      const Bar_Visulation = {
+        ...Data_Bar_1.visualOptions,
+        width: chartWidth,
+        height: chartHeight,
+      };
+
+    
+      let dataTypes_Type_Bar = Data_Bar_1.dataTypes;
+  
+    //   const result_BarChart = Barchart(
+    //     User_Input_bar,
+    //     Bar_Mapping,
+    //     Bar_Visulation,
+    //     dataTypes_Type_Bar
+    //   );
+
+    const result_BarChart = Barchart(
+        User_Input_bar,
+        Bar_Mapping,
+        { ...Bar_Visulation, width: +chartWidth, height: +chartHeight },
+        dataTypes_Type_Bar
+      );
+      
+      setviz_Barchart(result_BarChart);
+  
+      let User_Input = LineChart.userInput;
+      setuserInput(User_Input || "");
+  
+      let line_Mapping = LineChart.mapping;
+    //   let line_Visulation = LineChart.visualOptions || {};
+      let dataTypes_Type = LineChart.dataTypes;
+      let line_Visulation =  {
+        ...LineChart.visualOptions,
+        width: chartWidth,
+        height: chartHeight,
+      };
+  
+      const result_LineChart = Line_Chart(
+        User_Input,
+        line_Mapping,
+         { ...line_Visulation, width: +chartWidth, height: +chartHeight },
+        dataTypes_Type
+      );
+      setviz_Line_Chart(result_LineChart);
+      let User_Input_pie = Data_PieChart.userInput;
+      setuserInput(User_Input_pie || "");
+  
+      let Piechart_Mapping = Data_PieChart.mapping;
+      let Pie_Visulation = {
+        ...Data_PieChart.visualOptions,
+        width: chartWidth,
+        height: chartHeight,
+      };
+
+    
+      let dataTypes_Type_Pie = Data_PieChart.dataTypes;
+
+    const result_PieChart = PieChart(
+      User_Input_pie,
+      Piechart_Mapping,
+        { ...Pie_Visulation, width: +chartWidth, height: +chartHeight },
+        dataTypes_Type_Pie
+      );
+      
+      setviz_PieChart(result_PieChart);
+      console.log(result_PieChart, "PieChart_Result")
+
+
+    }, [chartWidth, chartHeight]);
+  
+    return (
+      <div>
+        {/* Render the charts using the updated chartWidth and chartHeight */}
+        <Render_Chart
+          viz_Bubble={viz_Bubble}
+          viz_Line_Chart={viz_Line_Chart}
+          viz_Barchart={viz_Barchart}
+        />
+      </div>
+    );
+  }
+
+
+
+ export default Featch_Chart;

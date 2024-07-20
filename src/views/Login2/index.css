@@ -1,0 +1,42 @@
+.A{
+    border: 2px solid #d3d3d3;
+    border-radius: 0.5em;
+    margin-bottom: 1em;
+    margin-left: auto;
+    margin-right: 100;
+    margin-top: 100px;
+    padding: 1em;
+    text-align: left;
+    width: 600px;
+    background-color: aquamarine;
+  }
+  
+  .form {
+    padding: 1em;
+  }
+  
+  label {
+    font-weight: 600;
+  }
+  
+
+  /* Add this CSS to your project */
+.form-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  max-width: 600px; /* Set the desired maximum width for the form */
+}
+
+.form-group {
+  flex-basis: 48%; /* Set the desired width for each form group (adjust as needed) */
+}
+
+
+
+
+
+
+
+

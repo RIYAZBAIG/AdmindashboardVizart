@@ -1,0 +1,337 @@
+import React, {useState, useEffect} from "react";
+//import { Line } from "react-chartjs-2";
+import * as d3 from "d3";
+//import axios from "axios";
+
+// nodejs library that concatenates classes
+import classNames from "classnames";
+// react plugin used to create charts
+import { Line, Bar } from "react-chartjs-2";
+// import CsvToJson_Comp from "../MyComp/Read_Csv";
+// import LoadCSVFile from "../MyComp/Load_Csv";
+// import LoadCSVFile_PieChart from "../MyComp/Load_csv_PieChar";
+// import LoadCSVFile_LineChart from "../MyComp/Load_csv_Linechart";
+// import LoadCSVFile_Lollipop from "../MyComp/Load_csv_Lollipop";
+// import JSON_1 from "MyComp/JSON";
+// import ApiFetch1 from "MyComp/ApiFeach";
+// import BarGraph from "MyComp/Onclick"
+// // import Render_graph from "../MyComp/Render_graph"
+// // import { Row } from "react-bootstrap";
+// import Bar_Graph from "../MyComp/Bar_Chart_React";
+// // import Bar_Graph_sub from "MyComp/Sub_BarGraph";
+// import Demo_linechart from "MyComp/line_chart";
+// import Chart_ID_Selection from "../MyComp/Chart_ID_Call"
+import Featch_Chart from "MyComponent/Featch_Data";
+// import Chart_Number from "../MyComponent/Function_Call_NO"
+import MultiFunction from "MyComponent/MultiFunction";
+
+
+
+//csvToJson("data.csv");
+
+// reactstrap components
+import {
+  Button,
+  ButtonGroup,
+  Card,
+  CardHeader,
+  CardBody,
+  CardTitle,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
+  UncontrolledDropdown,
+  Label,
+  FormGroup,
+  Input,
+  Table,
+  Row,
+  Col,
+  UncontrolledTooltip
+} from "reactstrap";
+
+// core components
+import {
+  chartExample1,
+  chartExample2,
+  chartExample3,
+  chartExample4
+} from "variables/charts.js";
+// import Bar_Graph_sub from "MyComp/Sub_BarGraph";
+// import Feach_data_API from "MyComp/API";
+// import Render_graph from "MyComp/Render_graph";
+// import ApiFetch2 from "MyComp/Multi_Bar_Chart";
+// import JSON_1 from "MyComp/JSON";
+
+// function Dashboard(props) {
+  
+//   const [bigChartData, setbigChartData] = React.useState("data1");
+//   const setBgChartData = (name) => {
+//     setbigChartData(name);
+//   };
+//   return (
+//     <>
+
+// <div className="content">
+  
+ 
+//   {/* <Feach_data_API /> */}
+//   {/* <Demo_linechart /> */}
+//   <Featch_Chart/>
+//   {/* <MultiFunction/> */}
+
+//   <Row style={{ marginBottom: "30px", width: "100%" }}>
+//   {/* < Chart_ID_Selection /> */}
+//   {/* <Render_graph /> */}
+// {/* <ApiFetch1 /> */}
+   
+// {/* <Chart_Number/> */}
+
+
+
+
+//     <Col xs="12">
+//       <Card className="card-chart">
+//         <CardHeader>
+//           <Row>
+//             <Col className="text-left" sm="6"></Col>
+//             <Col sm="6">
+//               <ButtonGroup></ButtonGroup>
+//             </Col>
+//           </Row>
+//         </CardHeader>
+//         <CardBody>
+//           <div className="chart-area" id="Mychart_11_1"></div>
+//         </CardBody>
+//       </Card>
+//     </Col>
+//   </Row>
+
+//   <Row style={{ marginBottom: "30px"}}>
+//     {/* <Col id="Mychart_2_1" style={{ height: "600px", width: "150px" }}></Col> */}
+//     <Col id="Mychart_2_1" style={{ height: "600px" , width: "600px" }}></Col>
+
+//     <Col id="Mychart_2_2" style={{ marginBottom: "50px" }}></Col>
+//   </Row>
+
+//   <Row>
+//     <Col xs="12">
+//       <Card className="card-chart">
+//         <CardHeader>
+//           <Row>
+//             <Col sm="6"></Col>
+//             <Col sm="6">{/* ButtonGroup */}</Col>
+//           </Row>
+//         </CardHeader>
+//         <CardBody>
+//           <div className="chart-area" id="Mychart_2_5" style={{ marginBottom: "80px" }}></div>
+//         </CardBody>
+//       </Card>
+//     </Col>
+//   </Row>
+
+//   <Row>
+//         <Col></Col>
+//         <Col></Col>
+//         <Col lg="4">
+//           <Card className="card-chart">
+//             <CardBody>
+//               {/* <div className="chart-area"> */}
+//                 {/* Render the content of ApiFetch1 */}
+//                 {/* {viz_Data} {viz_Bubble} {viz_Pie} {viz_LineChart} */}
+//               {/* </div> */}
+//             </CardBody>
+//           </Card>
+//         </Col>
+//       </Row>
+
+//   <Row>
+//     <Col></Col>
+//     <Col></Col>
+//     <Col lg="4">
+//       <Card className="card-chart">
+//         <CardBody>
+//           <div className="chart-area">{/* ApiFetch1 */}</div>
+//         </CardBody>
+//       </Card>
+//     </Col>
+//   </Row>
+// </div>
+
+
+
+
+
+    
+  
+//     {/* <CsvToJson_Comp />  */}
+    
+//   </>
+
+
+
+
+
+
+
+//   );
+// }
+
+function Dashboard(props) {
+  
+  const [bigChartData, setbigChartData] = React.useState("data1");
+  const setBgChartData = (name) => {
+    setbigChartData(name);
+  };
+
+  const [chartWidth, setChartWidth] = React.useState(1500);
+  const [chartHeight, setChartHeight] = React.useState(600);
+
+  const handleWidthChange = (event) => {
+    setChartWidth(event.target.value);
+  };
+
+  const handleHeightChange = (event) => {
+    setChartHeight(event.target.value);
+  };
+
+  // const updateChartSize = () => {
+  //   // Update the chart size based on the user input
+  //   const newWidth = chartWidth;
+  //   const newHeight = chartHeight;
+
+  //   // Update the chart width and height values
+  //   document.getElementById("Mychart_11_1").style.width = `${newWidth}px`;
+  //   document.getElementById("Mychart_11_1").style.height = `${newHeight}px`;
+  // };
+
+
+  const updateChartSize = () => {
+    // Update the chart size based on the user input
+    const newWidth = parseInt(chartWidth);
+    const newHeight = parseInt(chartHeight);
+  
+    // Update the chart width and height values
+    document.getElementById("Mychart_11_1").style.width = `${newWidth}px`;
+    document.getElementById("Mychart_11_1").style.height = `${newHeight}px`;
+  };
+  return (
+    <>
+
+<div className="content">
+       <div>
+          Chart Width:
+          <input type="number" value={chartWidth} onChange={handleWidthChange} />
+        </div>
+        <div>
+          Chart Height:
+          <input type="number" value={chartHeight} onChange={handleHeightChange} />
+        </div>
+        <button onClick={updateChartSize}>Update Chart Size</button>
+  
+ 
+  {/* <Feach_data_API /> */}
+  {/* <Demo_linechart /> */}
+  {/* <Featch_Chart/> */}
+  <Featch_Chart chartWidth={chartWidth} chartHeight={chartHeight} />
+
+  {/* <MultiFunction/> */}
+
+  <Row style={{ marginBottom: "30px", width: "100%" }}>
+  {/* < Chart_ID_Selection /> */}
+  {/* <Render_graph /> */}
+{/* <ApiFetch1 /> */}
+   
+{/* <Chart_Number/> */}
+
+
+
+
+    <Col xs="12">
+      <Card className="card-chart">
+        <CardHeader>
+          <Row>
+            <Col className="text-left" sm="6"></Col>
+            <Col sm="6">
+              <ButtonGroup></ButtonGroup>
+            </Col>
+          </Row>
+        </CardHeader>
+        <CardBody>
+          <div className="chart-area" id="Mychart_11_1"></div>
+        </CardBody>
+      </Card>
+    </Col>
+  </Row>
+
+  <Row style={{ marginBottom: "30px"}}>
+    {/* <Col id="Mychart_2_1" style={{ height: "600px", width: "150px" }}></Col> */}
+    <Col id="Mychart_2_1" style={{ height: "600px" , width: "600px" }}></Col>
+
+    <Col id="Mychart_2_2" style={{ marginBottom: "50px" }}></Col>
+  </Row>
+
+  <Row>
+    <Col xs="12">
+      <Card className="card-chart">
+        <CardHeader>
+          <Row>
+            <Col sm="6"></Col>
+            <Col sm="6">{/* ButtonGroup */}</Col>
+          </Row>
+        </CardHeader>
+        <CardBody>
+          <div className="chart-area" id="Mychart_2_5" style={{ marginBottom: "80px" }}></div>
+        </CardBody>
+      </Card>
+    </Col>
+  </Row>
+
+  <Row>
+        <Col></Col>
+        <Col></Col>
+        <Col lg="4">
+          <Card className="card-chart">
+            <CardBody>
+              {/* <div className="chart-area"> */}
+                {/* Render the content of ApiFetch1 */}
+                {/* {viz_Data} {viz_Bubble} {viz_Pie} {viz_LineChart} */}
+              {/* </div> */}
+            </CardBody>
+          </Card>
+        </Col>
+      </Row>
+
+  <Row>
+    <Col></Col>
+    <Col></Col>
+    <Col lg="4">
+      <Card className="card-chart">
+        <CardBody>
+          <div className="chart-area">{/* ApiFetch1 */}</div>
+        </CardBody>
+      </Card>
+    </Col>
+  </Row>
+</div>
+
+
+
+
+
+    
+  
+    {/* <CsvToJson_Comp />  */}
+    
+  </>
+
+
+
+
+
+
+
+  );
+}
+
+export default Dashboard;

@@ -1,0 +1,316 @@
+import React, { useState, useEffect } from "react";
+import ReactDOM from "react-dom";
+import { chart } from "@rawgraphs/rawgraphs-core";
+import { barchart, barchartmultiset, linechart , bubblechart, piechart} from "@rawgraphs/rawgraphs-charts";
+import { LineChart } from "./DataSet_Linechart";
+import { pieChart } from "./Data_Bubble";
+import { Data_Bar_1 } from "./Data_Barchart";
+import moment from 'moment';
+import { parseDataset } from "@rawgraphs/rawgraphs-core"
+
+
+
+
+
+
+
+// export function Barchart() { 
+//   const rows = Data_Bar_1.userInput.split('\n');
+//   const columns = rows[0].split(',');
+
+//   const result = rows.slice(1).map(row => {
+//     const rowData = row.split(',');
+//     const obj = {};
+//     columns.forEach((value, index) => {
+//       const currentValue = rowData[index] ? rowData[index].trim() : '';
+//       const parsedValue = isNaN(parseFloat(currentValue)) ? currentValue : parseFloat(currentValue);
+//       const key = columns[index];
+//       obj[key] = parsedValue || 0;
+//     });
+//     return obj;
+//   });
+
+//   const mapping = Data_Bar_1.mapping;
+//   //  const Visualization_Data = Data_Bar_1.visualOptions;
+
+//   const Visualization_Data = {
+//     ...Data_Bar_1.visualOptions,
+//     width: 1050, // Update the width value as per your requirements
+//     height: 600, // Update the height value as per your requirements
+//   };
+ 
+//  const viz = chart(barchart, { data: result, mapping: mapping, visualOptions: Visualization_Data });
+
+//   console.log(result, "Result of bar");
+
+//   return viz;
+// }
+
+export function Barchart(User_Input_bar, Bar_Mapping, Bar_Visulation, dataTypes_Type_Bar) {
+  const rows = User_Input_bar.split('\n');
+  const columns = rows[0].split(',');
+
+  const result = rows.slice(1).map(row => {
+    const rowData = row.split(',');
+    const obj = {};
+    columns.forEach((value, index) => {
+      const currentValue = rowData[index] ? rowData[index].trim() : '';
+      const parsedValue = isNaN(parseFloat(currentValue)) ? currentValue : parseFloat(currentValue);
+      const key = columns[index];
+      obj[key] = parsedValue || 0;
+    });
+    return obj;
+  });
+
+  // const mapping = Data_Bar_1.mapping;
+  //  const Visualization_Data = Data_Bar_1.visualOptions;
+
+ 
+ const viz = chart(barchart, { data: result, mapping: Bar_Mapping, visualOptions: Bar_Visulation });
+
+  console.log(result, "Result of bar");
+
+  return viz;
+}
+
+// export function Barchart({ chartHeight, chartWidth }) {
+//   const rows = Data_Bar_1.userInput.split('\n');
+//   const columns = rows[0].split(',');
+
+//   const result = rows.slice(1).map(row => {
+//     const rowData = row.split(',');
+//     const obj = {};
+//     columns.forEach((value, index) => {
+//       const currentValue = rowData[index] ? rowData[index].trim() : '';
+//       const parsedValue = isNaN(parseFloat(currentValue)) ? currentValue : parseFloat(currentValue);
+//       const key = columns[index];
+//       obj[key] = parsedValue || 0;
+//     });
+//     return obj;
+//   });
+
+//   const mapping = Data_Bar_1.mapping;
+
+//   const Visualization_Data = {
+//     ...Data_Bar_1.visualOptions,
+//     width: chartWidth, // Update the width value as per your requirements
+//     height: chartHeight, // Update the height value as per your requirements
+//   };
+
+//   const viz = chart(barchart, { data: result, mapping: mapping, visualOptions: Visualization_Data });
+
+//   console.log(result, "Result of bar");
+
+//   return null;
+// }
+
+// import React, { useState } from "react";
+// import { chart } from "chart-library"; // Assuming you have imported the chart library
+// import Data_Bar_1 from "./Data_Bar_1"; // Assuming you have the data and mapping for the barchart
+
+// export function Barchart() {
+//   const rows = Data_Bar_1.userInput.split("\n");
+//   const columns = rows[0].split(",");
+
+//   const result = rows.slice(1).map((row) => {
+//     const rowData = row.split(",");
+//     const obj = {};
+//     columns.forEach((value, index) => {
+//       const currentValue = rowData[index] ? rowData[index].trim() : "";
+//       const parsedValue = isNaN(parseFloat(currentValue))
+//         ? currentValue
+//         : parseFloat(currentValue);
+//       const key = columns[index];
+//       obj[key] = parsedValue || 0;
+//     });
+//     return obj;
+//   });
+
+//   const mapping = Data_Bar_1.mapping;
+//   const [chartHeight, setChartHeight] = useState(600); // Initial chart height value
+//   const [chartWidth, setChartWidth] = useState(1050); // Initial chart width value
+
+//   const handleHeightChange = (e) => {
+//     setChartHeight(e.target.value);
+//   };
+
+//   const handleWidthChange = (e) => {
+//     setChartWidth(e.target.value);
+//   };
+
+//   const Visualization_Data = {
+//     ...Data_Bar_1.visualOptions,
+//     width: chartWidth,
+//     height: chartHeight,
+//   };
+
+//   const viz = chart(barchart, {
+//     data: result,
+//     mapping: mapping,
+//     visualOptions: Visualization_Data,
+//   });
+
+//   console.log(result, "Result of bar");
+
+//   return (
+//     <div>
+//       <div>
+//         <label htmlFor="chartHeight">Chart Height:</label>
+//         <input
+//           type="number"
+//           id="chartHeight"
+//           value={chartHeight}
+//           onChange={handleHeightChange}
+//         />
+//       </div>
+//       <div>
+//         <label htmlFor="chartWidth">Chart Width:</label>
+//         <input
+//           type="number"
+//           id="chartWidth"
+//           value={chartWidth}
+//           onChange={handleWidthChange}
+//         />
+//       </div>
+//       <div>{viz}</div>
+//     </div>
+//   );
+// }
+
+// export function Barchart({ chartHeight, chartWidth }) {
+//   const rows = Data_Bar_1.userInput.split('\n');
+//   const columns = rows[0].split(',');
+
+//   const result = rows.slice(1).map(row => {
+//     const rowData = row.split(',');
+//     const obj = {};
+//     columns.forEach((value, index) => {
+//       const currentValue = rowData[index] ? rowData[index].trim() : '';
+//       const parsedValue = isNaN(parseFloat(currentValue)) ? currentValue : parseFloat(currentValue);
+//       const key = columns[index];
+//       obj[key] = parsedValue || 0;
+//     });
+//     return obj;
+//   });
+
+//   const mapping = Data_Bar_1.mapping;
+//   const visualizationData = {
+//     ...Data_Bar_1.visualOptions,
+//     width: chartWidth,
+//     height: chartHeight,
+//   };
+
+//   const viz = chart(barchart, { data: result, mapping: mapping, visualOptions: visualizationData });
+
+//   return <>{viz}</>;
+// }
+
+// export function Barchart({ chartHeight, chartWidth }) {
+//   const rows = Data_Bar_1.userInput.split('\n');
+//   const columns = rows[0].split(',');
+
+//   const result = rows.slice(1).map((row) => {
+//     const rowData = row.split(',');
+//     const obj = {};
+//     columns.forEach((value, index) => {
+//       const currentValue = rowData[index] ? rowData[index].trim() : '';
+//       const parsedValue = isNaN(parseFloat(currentValue)) ? currentValue : parseFloat(currentValue);
+//       const key = columns[index];
+//       obj[key] = parsedValue || 0;
+//     });
+//     return obj;
+//   });
+
+//   const mapping = Data_Bar_1.mapping;
+//   const visualizationData = {
+//     ...Data_Bar_1.visualOptions,
+//     width: chartWidth,
+//     height: chartHeight,
+//   };
+
+//   useEffect(() => {
+//     const viz = chart(barchart, { data: result, mapping: mapping, visualOptions: visualizationData });
+//     // viz.renderTo('#Mychart_11_1');
+//   }, [chartHeight, chartWidth]);
+
+//   return <div id="Mychart_11_1" />;
+// }
+
+
+
+
+
+
+
+function parseValue(value) {
+  // Handle numeric values
+  if (!isNaN(parseFloat(value))) {
+    return parseFloat(value);
+  }
+
+  // Handle date values
+  if (isDate(value)) {
+    return new Date(value);
+  }
+
+  // Handle other string values
+  return value;
+}
+
+
+
+export function Line_Chart(userInput, mapping, visualOptions, dataTypes_1 ) {
+  const rows = userInput.split('\n');
+  const columns = rows[0].split(',');
+
+  const result = rows.slice(1, -1).map(row => {
+    const rowData = row.split(',');
+    const obj = {};
+    columns.forEach((value, index) => {
+      const currentValue = rowData[index].trim();
+      let parsedValue;
+
+      if (currentValue === '' || currentValue === undefined) {
+        parsedValue = 0;
+      } else if (isDate(currentValue)) {
+   const [year, month, day] = currentValue.split('-');
+const parsedValue_date = `${year}-${month}-${day}`;
+  parsedValue =   parsedValue_date;  //new Date(parsedValue_date);
+  console.log(typeof parseValue)
+
+
+  
+  
+
+      } else if (!isNaN(parseFloat(currentValue))) {
+        parsedValue = parseFloat(currentValue);
+      } else {
+        parsedValue = currentValue;
+      }
+
+      const key = columns[index];
+      obj[key] = parsedValue;
+    });
+    return obj;
+  });
+
+  // const mapping = LineChart.mapping;
+  // const Visualization_Data = LineChart.visualOptions;
+  const { dataset, dataTypes, errors } = parseDataset(result)
+  console.log(dataTypes, "dataTypes_1" );
+  console.log(errors , "error" );
+  console.log(dataset , "dataset" );
+
+  const viz = chart(linechart, { data: dataset, dataTypes, mapping, visualOptions });
+
+  // console.log(result, "Result of Line chart");
+
+  return viz;
+}
+
+function isDate(value) {
+  const dateRegex = /^\d{4}-\d{2}-\d{2}$/; // Assuming the date format is YYYY-MM-DD
+  return dateRegex.test(value);
+}
+
+

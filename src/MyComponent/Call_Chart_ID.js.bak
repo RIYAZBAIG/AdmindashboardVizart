@@ -1,0 +1,243 @@
+import react from "react"
+import React, { useState, useEffect } from "react";
+
+
+
+function Render_Chart({ viz_PieChart, viz_Line_Chart, viz_Barchart}) {
+
+  
+
+    useEffect(() => {
+
+        const renderChart = (chartData, chartId) => {
+            const chartElement = document.getElementById(chartId);
+            if (!chartElement) {
+              console.error(`Could not find chart container with ID '${chartId}'.`);
+              return;
+            }
+            chartData.renderToDOM(chartElement);
+          };
+
+         
+      
+          
+
+          if (viz_Line_Chart) {
+            renderChart(viz_Line_Chart, 'Mychart_2_1');
+            renderChart(viz_Line_Chart, 'Mychart_2_2'); //Mychart_2_5 Mychart_2_1
+            console.log(viz_Line_Chart)
+          }
+
+          if (viz_Barchart) {
+            renderChart(viz_Barchart, 'Mychart_11_1');
+            
+            console.log(viz_Barchart, "Call_Barchart")
+          }
+
+          // if (viz_Bubble) {
+          //   renderChart(viz_Bubble, 'Mychart_2_5'); //Mychart_2_1
+          //   console.log(viz_Bubble)
+          // }
+
+          if (viz_PieChart) {
+            renderChart(viz_PieChart, 'Mychart_2_5');
+            console.log(viz_PieChart, "Call_Piechart")
+
+          }
+      
+         
+
+
+    },[viz_Line_Chart, viz_Barchart, viz_PieChart])
+
+
+
+}
+
+// function Render_Chart({ Bubble_Obj, Line_Obj }) {
+
+//     useEffect(() => {
+
+//         const renderChart = (chartData, chartId) => {
+//             const chartElement = document.getElementById(chartId);
+//             if (!chartElement) {
+//               console.error(`Could not find chart container with ID '${chartId}'.`);
+//               return;
+//             }
+//             chartData.renderToDOM(chartElement);
+//           };
+      
+//           if (Bubble_Obj) {
+//             renderChart(Bubble_Obj, 'Mychart_2_1');
+//             console.log(Bubble_Obj)
+//           }
+
+//           console.log(Line_Obj, "LineObj")
+
+//         //   if (viz_Line_Chart) {
+//         //     renderChart(viz_Line_Chart, 'Mychart_2_5');
+//         //     console.log(viz_Line_Chart)
+//         //   }
+
+
+//     },[Bubble_Obj, Line_Obj])
+
+
+
+// }
+
+
+
+
+
+// function Render_Chart({ viz_Bubble, viz_Line_Chart, viz_Barchart }) {
+//   useEffect(() => {
+//     const renderChart = (chartData, chartId) => {
+//       const chartElement = document.getElementById(chartId);
+//       if (!chartElement) {
+//         console.error(`Could not find chart container with ID '${chartId}'.`);
+//         return;
+//       }
+//       chartData.renderToDOM(chartElement);
+//     };
+
+//     if (viz_Line_Chart) {
+//       const resizableChart = (
+//         <Resizable width={600} height={600}>
+//           {viz_Line_Chart}
+//         </Resizable>
+//       );
+//       renderChart(resizableChart, 'Mychart_2_1');
+//       renderChart(resizableChart, 'Mychart_2_2');
+//       console.log(viz_Line_Chart);
+//     }
+
+//     if (viz_Barchart) {
+//       renderChart(viz_Barchart, 'Mychart_11_1');
+//       renderChart(viz_Barchart, 'Mychart_2_5');
+//       console.log(viz_Barchart, "Call_Barchart");
+//     }
+//   }, [viz_Bubble, viz_Line_Chart, viz_Barchart]);
+
+//   return null; // or return any other JSX if needed
+// }
+
+
+
+// import Resizable from './Resizable';
+
+// function Render_Chart({ viz_Bubble, viz_Line_Chart, viz_Barchart }) {
+//   useEffect(() => {
+//     const renderChart = (chartData, chartId) => {
+//       const chartElement = document.getElementById(chartId);
+//       if (!chartElement) {
+//         console.error(`Could not find chart container with ID '${chartId}'.`);
+//         return;
+//       }
+//       if (chartData.type === 'resizable') {
+//         const resizableChart = (
+//           <Resizable width={600} height={600}>
+//             {chartData.children}
+//           </Resizable>
+//         );
+//         ReactDOM.render(resizableChart, chartElement);
+//       } else {
+//         chartElement.innerHTML = chartData;
+//       }
+//     };
+
+//     if (viz_Line_Chart) {
+//       const lineChart = {
+//         type: 'resizable',
+//         children: <div>{viz_Line_Chart}</div>,
+//       };
+//       renderChart(lineChart, 'Mychart_2_1');
+//       renderChart(lineChart, 'Mychart_2_2');
+//       console.log(viz_Line_Chart);
+//     }
+
+//     if (viz_Barchart) {
+//       const barChart = {
+//         type: 'resizable',
+//         children: <div>{viz_Barchart}</div>,
+//       };
+//       renderChart(barChart, 'Mychart_11_1');
+//       renderChart(barChart, 'Mychart_2_5');
+//       console.log(viz_Barchart, 'Call_Barchart');
+//     }
+//   }, [viz_Bubble, viz_Line_Chart, viz_Barchart]);
+
+//   return null;
+// }
+
+// import React, { useState, useEffect } from "react";
+// import { Resizable } from "react-resizable";
+// import Dashboard from "views/Dashboard";
+
+// function Render_Chart({ viz_Bubble, viz_Line_Chart, viz_Barchart }) {
+//   useEffect(() => {
+//     const renderChart = (chartData, chartId) => {
+//       const chartElement = document.getElementById(chartId);
+//       if (!chartElement) {
+//         console.error(`Could not find chart container with ID '${chartId}'.`);
+//         return;
+//       }
+//       chartData.renderToDOM(chartElement);
+//     };
+
+//     if (viz_Line_Chart) {
+//       renderChart(viz_Line_Chart, "Mychart_2_1");
+//       renderChart(viz_Line_Chart, "Mychart_2_2"); //Mychart_2_5 Mychart_2_1
+//       console.log(viz_Line_Chart);
+//     }
+
+//     if (viz_Barchart) {
+//       renderChart(viz_Barchart, "Mychart_11_1");
+//       renderChart(viz_Barchart, "Mychart_2_5");
+//       console.log(viz_Barchart, "Call_Barchart");
+//     }
+//   }, [viz_Bubble, viz_Line_Chart, viz_Barchart]);
+
+//   const ResizableChart = ({ children }) => {
+//     const [chartWidth, setChartWidth] = useState(600);
+//     const [chartHeight, setChartHeight] = useState(600);
+
+//     const handleResize = (event, { size }) => {
+//       setChartWidth(size.width);
+//       setChartHeight(size.height);
+//     };
+
+//     return (
+//       <Resizable
+//         width={chartWidth}
+//         height={chartHeight}
+//         onResize={handleResize}
+//       >
+//         <div
+//           className="chartContainer"
+//           style={{ position: "relative", width: chartWidth, height: chartHeight }}
+//         >
+//           {/* Render your chart components here */}
+//           {children}
+//         </div>
+//       </Resizable>
+//     );
+//   };
+
+//   return (
+//     <ResizableChart>
+//       {/* Render your viz_Barchart component here */}
+//       {/* {<Dashboard />} */}
+//     </ResizableChart>
+//   );
+// }
+
+
+export default Render_Chart;
+
+
+
+ 
+
+
+

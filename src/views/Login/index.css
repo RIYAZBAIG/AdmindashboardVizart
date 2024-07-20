@@ -1,0 +1,37 @@
+.App {
+  border: 2px solid #d3d3d3;
+  border-radius: 0.5em;
+  margin-bottom: 1em;
+  margin-left: auto;
+  margin-right: 100;
+  margin-top: 100px;
+  padding: 1em;
+  text-align: left;
+  width: 600px;
+  background-color: #d3d3d3;
+
+}
+
+.form {
+  padding: 1em;
+ 
+}
+
+label {
+  font-weight: 600;
+}
+
+.name{
+  flex: 1 0 140px;
+}
+
+
+.pass{
+  flex: 1 0 140px;
+
+}
+
+.submit{
+  flex: 1 0 50px;
+
+}
